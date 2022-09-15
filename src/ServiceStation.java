@@ -1,29 +1,17 @@
-public class ServiceStation {
-    public void check(Car car) {
-        printServiceMsg(car);
-        for (int i = 0; i < car.getWheelsCount(); i++) {
-            car.updateTyre();
+public class ServiceStation implements Service {
+    public void check(Transport transport) {
+        printServiceMsg(transport);
+        for (int i = 0; i < transport.getWheelsCount(); i++) {
+            transport.updateTyre();
         }
-        car.checkEngine();
-    }
-
-    public void check(Truck truck) {
-        printServiceMsg(truck);
-        for (int i = 0; i < truck.getWheelsCount(); i++) {
-            truck.updateTyre();
+        if (transport.getClass() ==  Car.class){
+            transport.checkEngine();
         }
-        truck.checkEngine();
-        truck.checkTrailer();
-    }
-
-    public void check(Bicycle bicycle) {
-        printServiceMsg(bicycle);
-        for (int i = 0; i < bicycle.getWheelsCount(); i++) {
-            bicycle.updateTyre();
+        if (transport.getClass() == Truck.class){
+            transport.checkEngine();
+            transport.checkTrailer();
         }
     }
 
-    private void printServiceMsg(Transport transport) {
-        System.out.println("Обслуживаем " + transport.getModelName());
-    }
 }
+
